@@ -7,6 +7,7 @@ The goal is to:
   * Phone Number
   * Email
 - Check if valid and store it into a database
-- Read from database
-- Search the database
-- Delete from database
+  * Read from database
+  * Search the database
+  * Delete from database
+- Export the contact details to a .CSV file 
