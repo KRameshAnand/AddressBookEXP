@@ -1,8 +1,8 @@
 # AddressBookEXP
 
-This a simple SQLite-Python application.
+## This a simple SQLite-Python application.
 The goal is to:
-- Database operations
+- **Database operations**
   * Input three records namely:
        Name,
        Phone Number,
@@ -10,4 +10,4 @@ The goal is to:
   * Read from database
   * Search the database
   * Delete from database
-- Export the contact details to a .CSV file 
+- **Export the contact details to a .CSV file** 
