@@ -11,6 +11,7 @@ print("Press i to insert a record")
 print("press v to view the records")
 print("Press s to search the records by name")
 print("Press c to clear all records")
+print("Press e to export all records to .csv file")
 print("\n")
 choice = input("Press the key : ")
 
