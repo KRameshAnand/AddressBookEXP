@@ -2,7 +2,7 @@
 import sqlite3
 
 
-
+# Check table and insert into database
 def writeIntoDB(name,ph_no,email):
 
     try:
@@ -52,7 +52,7 @@ def searchName(nameString):
         print("Error with database")
     connd.close()
 
-# Delete some record(s) by name
+# Clear the table
 def clearRecords():
     print("A L L   T H E   R E C O R D S   W I L L   B E   D E L E T E D")
     print("Are you sure to continue ? ")
@@ -63,5 +63,19 @@ def clearRecords():
     	    connd.execute("DELETE FROM AddressBook")
     	    connd.commit()
     	    connd.close()
+        except:
+            print("Database error")
+
+# Delete some record(s) by name
+def deleteRecords(namestring):
+    print("T H E   R E C O R D    W I L L   B E   D E L E T E D : ",namestring)
+    ch = str(input("Press y to continue or any other key to abort deleting : "))
+    if(ch == 'y'or ch == 'Y'):
+        try:
+            connd = sqlite3.connect("AddressBook.db")
+            query = "DELETE FROM AddressBook WHERE name='%s'" % namestring
+            connd.execute(query)
+            connd.commit()
+            connd.close()
         except:
             print("Database error")
