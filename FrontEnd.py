@@ -1,4 +1,5 @@
 from AddressBookDB import *
+from csv import *
 
 
 print("#"*80)
@@ -15,9 +16,12 @@ choice = input("Press the key : ")
 
 if choice == "i":
 	print("\n")
-	name = str(input("Enter the name : "))
-	ph_no = str(input("Enter the phone number : "))
-	email = str(input("Enter the email : "))
+	try:
+	    name = str(input("Enter the name : "))
+	    ph_no = str(input("Enter the phone number : "))
+	    email = str(input("Enter the email : "))
+	except ValueError:
+            print ("The values are not acceptable")
 	writeIntoDB(name,ph_no,email)
 
 elif choice == "v":
@@ -31,4 +35,8 @@ elif choice == "s":
 
 elif choice == "c":
 	print("\n")
-	deleteRecord()
+	clearRecords()
+
+elif choice == "e":
+        print("\n")
+        writeCSV()

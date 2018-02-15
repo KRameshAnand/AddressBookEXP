@@ -5,19 +5,20 @@ import sqlite3
 
 def writeIntoDB(name,ph_no,email):
 
-    connd = sqlite3.connect("AddressBook.db")
-        
     try:
+        connd = sqlite3.connect("AddressBook.db")
         connd.execute('''CREATE TABLE IF NOT EXISTS ADDRESSBOOK (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
                 ph_no TEXT NOT NULL,
                 email TEXT);''')
-    except Exception as e:
-        print("Problem with Create Table Statement.");
+    except:
+        print("Trouble with creation of table. \
+		\nMake sure you have the apporpriate permissions");
  
     if name != "":
-        connd.execute("INSERT INTO ADDRESSBOOK (name, ph_no, email) VALUES (?,?,?)",(name,ph_no,email))
+        connd.execute("INSERT INTO ADDRESSBOOK (name, ph_no, email)\
+	 		VALUES (?,?,?)",(name,ph_no,email))
     else:
         print("You must enter a name. ") 
     
@@ -28,9 +29,8 @@ def writeIntoDB(name,ph_no,email):
 # Read into the data in the database
 def readIntoDB():
 
-    connd = sqlite3.connect("AddressBook.db")
-
-    try:    
+    try:     
+        connd = sqlite3.connect("AddressBook.db")
         print("{0:3} {1:30} {2:14} {3:30}".format("ID","Name","Phone Number","Email"))
         print("-"*3,"-"*30, "-"*14,"-"*30)
         cursor = connd.execute("SELECT * FROM AddressBook;")            
@@ -53,9 +53,15 @@ def searchName(nameString):
     connd.close()
 
 # Delete some record(s) by name
-def deleteRecord():
+def clearRecords():
     print("A L L   T H E   R E C O R D S   W I L L   B E   D E L E T E D")
-    connd = sqlite3.connect("AddressBook.db")
-    connd.execute("DELETE FROM AddressBook")
-    connd.commit()
-    connd.close()
+    print("Are you sure to continue ? ")
+    ch = str(input("Press y to continue or any other key to abort deleting"))
+    if(ch == 'y'or ch == 'Y'):
+        try:
+    	    connd = sqlite3.connect("AddressBook.db")
+    	    connd.execute("DELETE FROM AddressBook")
+    	    connd.commit()
+    	    connd.close()
+        except:
+            print("Database error")
